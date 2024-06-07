@@ -21,8 +21,14 @@
     
             echo "Erro ao executar a consulta: " . $mysqli->error;
         }
+
+        if($login1 == $login && $senha1 == $senha){
+            echo "conectado";
+        }else{
+            echo "login ou senha errada por gentileza verificar";
+        }
         
-        // Fechar a conexão com o banco de dados
+        
         $mysqli->close();
 
 

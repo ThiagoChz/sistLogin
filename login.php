@@ -1,12 +1,30 @@
 <?php
 
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-$mysqli = new mysqli("localhost", "root", "", "controlcore");
 
-  $result = $mysqli->query("SELECT * FROM cadastro");
-  printf("Select retornou %d linhas.\n", $result.login);
+        $login = $_POST["login"];
+        $senha = $_POST["senha"];
+        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+        $mysqli = new mysqli("localhost", "root", "", "controlcore");
+
+        $result = $mysqli->query("SELECT * FROM cadastro");
+        
+        if ($result) {
+            printf("Select retornou %d linhas.\n", $result->num_rows);
+           
+            while ($row = $result->fetch_assoc()) {
+                $login1 = $row['login'];
+                $senha1 = $row['senha'];
+                printf("Login: %s, Senha: %s\n", $row['login'], $row['senha']);
+            }
+            $result->free();
+        } else {
+    
+            echo "Erro ao executar a consulta: " . $mysqli->error;
+        }
+        
+        // Fechar a conexão com o banco de dados
+        $mysqli->close();
 
 
-echo "O valor de CAMPO 1 é: " . $_POST["login"];
-echo "<br>O valor de CAMPO 2 é: " . $_POST["senha"];
+ 
 ?>

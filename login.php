@@ -1,6 +1,5 @@
 <?php
 
-      
         $login = $_POST["login"];
         $senha = $_POST["senha"];
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
@@ -24,7 +23,7 @@
             die();
           
         }else{
-             header("Location: principal.php");
+             header("Location: erro.php");
              die();
         }
         
